@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SportZone - Pemesanan lapangan futsal dan badminton.">
+  <title>SportZone | Booking Lapangan Olahraga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="#beranda"><span class="brand-icon">⚽</span> Sport<span>Zone</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#beranda">Beranda</a>
+        <a href="#lapangan">Lapangan</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#kontak">Kontak</a>
+        <a class="nav-button" href="#pemesanan">Pesan Sekarang</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="beranda">
+      <div class="hero-content">
+        <span class="eyebrow">SPORTZONE ARENA</span>
+        <h1>Main Lebih Seru<br>di <span>SportZone!</span></h1>
+        <p>Fasilitas &amp; lapangan dengan kualitas terbaik untuk setiap permainanmu.</p>
+        <a class="primary-button" href="#lapangan">Pesan Lapangan <span>→</span></a>
+      </div>
+      <div class="hero-decoration" aria-hidden="true">
+        <span class="ball">⚽</span>
+        <span class="shuttle">🏸</span>
+      </div>
+    </section>
+
+    <section class="booking-section container" id="lapangan">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">PILIH TEMPAT BERMAIN</span>
+          <h2>Daftar Lapangan</h2>
+        </div>
+        <p>Pilih lapangan favoritmu dan tentukan jadwal bermain.</p>
+      </div>
+
+      <div class="content-grid">
+        <div class="court-grid">
+          <article class="court-card">
+            <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=900&q=85" alt="Lapangan futsal">
+            <div class="court-info">
+              <span class="court-type">FUTSAL</span>
+              <h3>Futsal A</h3>
+              <p class="price">Rp100.000 <small>/ jam</small></p>
+              <button class="card-button book-button" data-court="Futsal A">Pesan Sekarang</button>
+            </div>
+          </article>
+
+          <article class="court-card">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=900&q=85" alt="Lapangan olahraga">
+            <div class="court-info">
+              <span class="court-type">FUTSAL</span>
+              <h3>Futsal B</h3>
+              <p class="price">Rp120.000 <small>/ jam</small></p>
+              <button class="card-button book-button" data-court="Futsal B">Pesan Sekarang</button>
+            </div>
+          </article>
+
+          <article class="court-card">
+            <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=900&q=85" alt="Lapangan badminton">
+            <div class="court-info">
+              <span class="court-type">BADMINTON</span>
+              <h3>Badminton</h3>
+              <p class="price">Rp50.000 <small>/ jam</small></p>
+              <button class="card-button book-button" data-court="Badminton">Pesan Sekarang</button>
+            </div>
+          </article>
+        </div>
+
+        <aside class="form-card" id="pemesanan">
+          <div class="form-heading">
+            <span class="form-icon">📅</span>
+            <div>
+              <h2>Form Pemesanan</h2>
+              <p>Isi data untuk booking lapangan.</p>
+            </div>
+          </div>
+          <form id="bookingForm">
+            <label for="customerName">Nama Pelanggan</label>
+            <input type="text" id="customerName" name="customerName" placeholder="Masukkan nama kamu" required>
+
+            <label for="phone">No. WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="Contoh: 081234567890" required>
+
+            <label for="bookingDate">Tanggal</label>
+            <input type="date" id="bookingDate" name="bookingDate" required>
+
+            <label for="courtSelect">Pilih Lapangan</label>
+            <select id="courtSelect" name="court" required>
+              <option value="">Pilih lapangan</option>
+              <option value="Futsal A">Futsal A — Rp100.000/jam</option>
+              <option value="Futsal B">Futsal B — Rp120.000/jam</option>
+              <option value="Badminton">Badminton — Rp50.000/jam</option>
+            </select>
+
+            <label for="timeSelect">Jam Bermain</label>
+            <select id="timeSelect" name="time" required>
+              <option value="">Pilih jam bermain</option>
+              <option>08:00 - 09:00</option>
+              <option>09:00 - 10:00</option>
+              <option>10:00 - 11:00</option>
+              <option>13:00 - 14:00</option>
+              <option>14:00 - 15:00</option>
+              <option>15:00 - 16:00</option>
+              <option>16:00 - 17:00</option>
+              <option>19:00 - 20:00</option>
+              <option>20:00 - 21:00</option>
+            </select>
+
+            <div class="estimate">
+              <span>Estimasi harga (1 jam)</span>
+              <strong id="priceEstimate">Rp0</strong>
+            </div>
+            <button class="submit-button" type="submit">Kirim Pemesanan <span>→</span></button>
+            <p class="form-note">*Pemesanan ini merupakan simulasi tampilan website.</p>
+          </form>
+          <div class="success-message" id="successMessage" role="status" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="about-section" id="tentang">
+      <div class="container about-inner">
+        <div>
+          <span class="eyebrow">KENALAN DENGAN KAMI</span>
+          <h2>Olahraga jadi lebih mudah bersama SportZone.</h2>
+        </div>
+        <p>SportZone menyediakan pilihan lapangan futsal dan badminton untuk menemani aktivitas olahraga kamu. Pilih lapangan, tentukan jadwal, lalu bersiap untuk bermain!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="#beranda">⚽ Sport<span>Zone</span></a>
+      <p>© 2026 SportZone. Website latihan pemesanan lapangan.</p>
+      <a href="mailto:info@sportzone.example">Hubungi Kami</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
