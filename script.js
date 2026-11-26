@@ -5,17 +5,13 @@ const priceEstimate = document.getElementById('priceEstimate');
 const bookingForm = document.getElementById('bookingForm');
 const successMessage = document.getElementById('successMessage');
 const bookingDate = document.getElementById('bookingDate');
+const receipt = document.getElementById('receipt');
+const printReceiptButton = document.getElementById('printReceipt');
 
-const prices = {
-  'Futsal A': 100000,
-  'Futsal B': 120000,
-  'Badminton': 50000
-};
+const prices = { 'Futsal A': 100000, 'Futsal B': 120000, 'Badminton': 50000 };
 
 const rupiah = (number) => new Intl.NumberFormat('id-ID', {
-  style: 'currency',
-  currency: 'IDR',
-  maximumFractionDigits: 0
+  style: 'currency', currency: 'IDR', maximumFractionDigits: 0
 }).format(number);
 
 menuToggle.addEventListener('click', () => {
@@ -32,20 +28,16 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
-// Tanggal yang bisa dipilih dimulai dari hari ini.
 const today = new Date();
 const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
   .toISOString().split('T')[0];
 bookingDate.min = localToday;
 
 function updatePrice() {
-  const selectedPrice = prices[courtSelect.value] || 0;
-  priceEstimate.textContent = rupiah(selectedPrice);
+  priceEstimate.textContent = rupiah(prices[courtSelect.value] || 0);
 }
-
 courtSelect.addEventListener('change', updatePrice);
 
-// Tombol pada setiap kartu akan memilih lapangan dan mengarahkan ke form.
 document.querySelectorAll('.book-button').forEach((button) => {
   button.addEventListener('click', () => {
     courtSelect.value = button.dataset.court;
@@ -54,17 +46,27 @@ document.querySelectorAll('.book-button').forEach((button) => {
   });
 });
 
+function formatDate(dateString) {
+  return new Date(`${dateString}T00:00:00`).toLocaleDateString('id-ID', {
+    day: '2-digit', month: 'long', year: 'numeric'
+  });
+}
+
+function createBookingNumber() {
+  const datePart = new Date().toISOString().slice(0, 10).replaceAll('-', '');
+  return `SZ-${datePart}-${Math.floor(1000 + Math.random() * 9000)}`;
+}
+
 bookingForm.addEventListener('submit', (event) => {
   event.preventDefault();
-
   if (!bookingForm.reportValidity()) return;
 
-  const formData = new FormData(bookingForm);
-  const name = formData.get('customerName').trim();
-  const phone = formData.get('phone').trim();
-  const date = formData.get('bookingDate');
-  const court = formData.get('court');
-  const time = formData.get('time');
+  const data = new FormData(bookingForm);
+  const name = data.get('customerName').trim();
+  const phone = data.get('phone').trim();
+  const date = data.get('bookingDate');
+  const court = data.get('court');
+  const time = data.get('time');
 
   if (!/^[0-9+\s-]{9,16}$/.test(phone)) {
     successMessage.className = 'success-message show';
@@ -72,11 +74,18 @@ bookingForm.addEventListener('submit', (event) => {
     return;
   }
 
-  successMessage.className = 'success-message show';
-  successMessage.textContent =
-    `Terima kasih, ${name}! Permintaan booking ${court} pada ${date}, pukul ${time} sudah tercatat di demo ini. Estimasi biaya: ${rupiah(prices[court])}.`;
+  document.getElementById('receiptNumber').textContent = `Nomor booking: ${createBookingNumber()}`;
+  document.getElementById('receiptName').textContent = name;
+  document.getElementById('receiptPhone').textContent = phone;
+  document.getElementById('receiptDate').textContent = formatDate(date);
+  document.getElementById('receiptCourt').textContent = court;
+  document.getElementById('receiptTime').textContent = time;
+  document.getElementById('receiptPrice').textContent = rupiah(prices[court]);
 
-  bookingForm.reset();
-  priceEstimate.textContent = rupiah(0);
-  bookingDate.min = localToday;
+  successMessage.className = 'success-message show';
+  successMessage.textContent = 'Booking berhasil dicatat pada demo SportZone. Struk pemesanan sudah dibuat di bawah ini.';
+  receipt.hidden = false;
+  receipt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
+
+printReceiptButton.addEventListener('click', () => window.print());

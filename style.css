@@ -164,3 +164,29 @@ footer { background: var(--navy); color: #c9c9d8; padding: 25px 0; }
   .court-card { grid-template-columns: 1fr; }
   .court-card img { height: 170px; }
 }
+
+
+/* Struk pemesanan */
+.receipt { margin-top: 18px; padding: 20px; border: 1px dashed #b9bacb; border-radius: 12px; background: #fffef9; }
+.receipt[hidden] { display: none; }
+.receipt-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 13px; border-bottom: 1px solid #e8e6dc; }
+.receipt-logo { color: var(--navy); font-weight: 800; font-size: 1rem; }
+.receipt-logo span { color: #d5a91f; }
+.receipt-status { color: #267344; background: #e8f6ec; border-radius: 20px; padding: 5px 9px; font-size: .58rem; font-weight: 800; letter-spacing: .5px; }
+.receipt h3 { margin-top: 15px; font-size: 1.05rem; }
+.receipt-number { color: #85869a; font-size: .68rem; margin: 3px 0 14px; }
+.receipt-line { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #efeff2; font-size: .72rem; }
+.receipt-line span { color: #77788b; }
+.receipt-line strong { text-align: right; overflow-wrap: anywhere; }
+.receipt-total { display: flex; justify-content: space-between; gap: 10px; padding: 14px 0; margin-top: 4px; font-size: .82rem; font-weight: 700; }
+.receipt-total strong { color: #9a7410; font-size: 1rem; }
+.receipt-footnote { color: #77788b; font-size: .65rem; line-height: 1.6; margin: 5px 0 14px; }
+.print-button { width: 100%; padding: 11px; border: 0; border-radius: 8px; background: var(--navy); color: white; font-weight: 600; font-size: .75rem; cursor: pointer; }
+.print-button:hover { background: #30305a; }
+@media print {
+  body { background: white !important; }
+  body * { visibility: hidden !important; }
+  #receipt, #receipt * { visibility: visible !important; }
+  #receipt { display: block !important; position: absolute; left: 0; top: 0; width: 100%; max-width: 520px; margin: 0; border: 1px dashed #777; box-shadow: none; color: #111; }
+  #printReceipt { display: none !important; }
+}

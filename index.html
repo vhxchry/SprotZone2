@@ -129,6 +129,22 @@
             <p class="form-note">*Pemesanan ini merupakan simulasi tampilan website.</p>
           </form>
           <div class="success-message" id="successMessage" role="status" aria-live="polite"></div>
+          <section class="receipt" id="receipt" aria-live="polite" hidden>
+            <div class="receipt-top">
+              <span class="receipt-logo">⚽ Sport<span>Zone</span></span>
+              <span class="receipt-status">BOOKING DITERIMA</span>
+            </div>
+            <h3>Struk Pemesanan</h3>
+            <p class="receipt-number" id="receiptNumber"></p>
+            <div class="receipt-line"><span>Nama pelanggan</span><strong id="receiptName"></strong></div>
+            <div class="receipt-line"><span>No. WhatsApp</span><strong id="receiptPhone"></strong></div>
+            <div class="receipt-line"><span>Tanggal bermain</span><strong id="receiptDate"></strong></div>
+            <div class="receipt-line"><span>Lapangan</span><strong id="receiptCourt"></strong></div>
+            <div class="receipt-line"><span>Jam bermain</span><strong id="receiptTime"></strong></div>
+            <div class="receipt-total"><span>Total (1 jam)</span><strong id="receiptPrice"></strong></div>
+            <p class="receipt-footnote">Simpan struk ini sebagai bukti permintaan booking. Pembayaran dan jadwal perlu dikonfirmasi oleh pengelola SportZone.</p>
+            <button type="button" class="print-button" id="printReceipt">Cetak / Simpan PDF</button>
+          </section>
         </aside>
       </div>
     </section>
